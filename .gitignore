@@ -1,0 +1,6 @@
+tun/
+__pycache__/
+.cache/
+models/
+*.pyc
+.env
