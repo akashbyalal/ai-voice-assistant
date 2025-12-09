@@ -1,66 +1,79 @@
 {
-  "ohm law": "Ohm’s Law states that current is directly proportional to voltage across a conductor at constant temperature. V = I × R.",
+  "ohms law": "Ohm’s Law states that the current flowing through a conductor is directly proportional to the voltage across it, provided temperature remains constant. V = I × R. It forms the basic relationship of current, voltage, and resistance and is used in circuit analysis.",
   
-  "kirchhoff voltage law": "KVL states that the algebraic sum of voltages around any closed loop in a circuit is zero.",
-  "kirchhoff current law": "KCL states that the total current entering a node is equal to the total current leaving the node.",
+  "kirchhoff voltage law": "KVL states that the algebraic sum of voltages in any closed loop is zero. Applied to mesh analysis and energy conservation in circuits.",
+  "kirchhoff current law": "KCL states that algebraic sum of currents at a node is zero. Total current entering equals total leaving. Used in nodal analysis.",
 
-  "resistor": "A resistor limits current flow and drops voltage. R = ρL/A.",
-  "capacitor": "Capacitor stores energy as an electric field. C = εA/d.",
-  "inductor": "Inductor stores energy in magnetic form. V = L (di/dt).",
+  "capacitor": "A capacitor stores electrical energy in an electric field between conducting plates separated by a dielectric. C = εA/d. Used in filtering, timing circuits, coupling/decoupling, tuning circuits.",
+  "inductor": "An inductor stores energy in a magnetic field. Voltage across inductor V = L(di/dt). Used in filters, tuned circuits, switching regulators and RF designs.",
+  "resistor": "A resistor opposes current flow and provides voltage drops. R = ρL/A. Used for biasing, current limiting and sensing.",
 
-  "diode": "A diode conducts in forward bias and blocks current in reverse bias. Typical drop ~0.7V (Si).",
-  "zener diode": "Designed to operate in reverse breakdown for voltage regulation.",
-  "transistor": "A semiconductor device used for amplification or switching.",
-  "bjt": "A bipolar junction transistor controlled by base current. Three terminals: E, B, C.",
-  "mosfet": "Metal-Oxide-Semiconductor FET controlled by gate voltage. High switching speed, high input impedance.",
+  "semiconductor": "A semiconductor is a material whose conductivity lies between conductor and insulator. Examples: Silicon, Germanium. Doping creates P and N type regions enabling diodes and transistors.",
+  "pn junction": "A PN junction forms when P and N regions meet causing diffusion and formation of depletion region. Exhibits conduction in forward bias and blocking in reverse bias.",
+  "zener diode": "A diode designed to operate in reverse breakdown at specific breakdown voltage used in voltage regulation.",
+  "bjt": "A Bipolar Junction Transistor is a current controlled device. Regions: emitter, base, collector. BJT can work in active, saturation and cutoff regions for amplification and switching.",
+  "mosfet": "MOSFET is a voltage-controlled FET having high input impedance and fast switching. Used in power electronics, digital ICs and RF circuits.",
 
-  "amplifier": "An amplifier increases amplitude of a signal without changing its shape.",
-  "operational amplifier": "High gain differential amplifier. Ideal op-amp: infinite gain, infinite input impedance.",
-  "rectifier": "Circuit that converts AC to DC. Types: half-wave, full-wave, bridge.",
-  "filter": "Allows certain frequencies and rejects others. LPF, HPF, BPF, BSF.",
+  "rectifier": "A circuit which converts AC to DC using diodes. Half-wave uses single diode, full-wave uses center tap or bridge configuration. Ripple reduced by filters.",
+  "filter": "Filters allow desired frequency band and reject unwanted components. Types: low-pass, high-pass, band-pass, band-stop. Implemented using RLC or active op-amp circuits.",
+  "clamping circuit": "Shifts the DC level of a signal without changing amplitude. Used for restoring DC level and wave shaping.",
+  "clipping circuit": "Limits the amplitude of a signal beyond a reference voltage. Used for protection and wave shaping.",
 
-  "logic gate": "Basic digital circuit performing Boolean operations: AND, OR, NOT, NAND, NOR, XOR, XNOR.",
-  "flip flop": "Bi-stable circuit storing 1-bit. Types: SR, JK, D, T.",
-  "counter": "Sequential circuit used to count pulses. Can be up/down, synchronous/asynchronous.",
-  "register": "Group of flip-flops storing multiple bits.",
-
-  "microprocessor": "A programmable device performing arithmetic and logical operations. CPU only.",
-  "microcontroller": "Contains CPU, RAM, ROM, I/O ports on a single chip. Used in embedded applications.",
-
-  "modulation": "Process of varying a carrier according to message signal for transmission.",
-  "amplitude modulation": "Carrier amplitude varies with message signal. Equation: s(t)=Ac[1+Ka m(t)]cos(2πfct).",
-  "frequency modulation": "Frequency of carrier varies with message signal. More noise immune than AM.",
-  "phase modulation": "Phase of carrier varies with message signal.",
-
-  "demodulation": "Extracting baseband information from modulated carrier.",
-  "communication system": "Collection of devices transferring information from transmitter to receiver.",
-
-  "analog signal": "Continuous amplitude and time representation.",
-  "digital signal": "Discrete amplitude and discrete time representing binary values.",
-  "signal": "Any physical quantity that conveys information.",
-
-  "sampling": "Conversion of continuous signal to discrete-time by taking samples at intervals.",
-  "nyquist theorem": "Sampling frequency must be ≥2×maximum signal frequency.",
-  "quantization": "Mapping continuous amplitudes into discrete levels.",
-  "bandwidth": "Frequency range required to transmit a signal effectively.",
-
-  "antenna": "Device used to radiate and receive electromagnetic waves.",
-  "waveguide": "Structure guiding microwave signals with low loss.",
-  "radar": "Radio detection and ranging, measures distance and velocity of targets.",
-
-  "transformer": "Changes AC voltage level using electromagnetic induction. Turns ratio = Vp/Vs = Np/Ns.",
-  "eddy current": "Circulating currents induced in conductors by changing magnetic fields causing power loss.",
-  "hysteresis": "Lag between magnetizing force and magnetic flux density, causes hysteresis loss.",
-
-  "communication protocols": "Rules governing data exchange. Common: UART, SPI, I2C.",
-  "spi": "Serial Peripheral Interface, full duplex synchronous serial communication.",
-  "i2c": "Inter-Integrated Circuit, two-wire serial communication (SDA, SCL).",
-
-  "fourier transform": "Converts time-domain signal into frequency components.",
-  "laplace transform": "Converts differential equations into algebraic equations in s-domain.",
-  "z transform": "Discrete-time equivalent of Laplace transform.",
+  "operational amplifier": "An Op-Amp is a high gain differential amplifier with very high input impedance and very low output impedance. Used in amplifiers, integrators, differentiators, active filters, oscillators and ADC/DAC interface.",
   
-  "adc": "Analog to Digital Converter converts analog input into digital binary value.",
-  "dac": "Digital to Analog Converter converts binary input into analog voltage."
+  "logic gate": "A digital circuit that performs Boolean function. Basic gates: AND, OR, NOT. Universal gates: NAND, NOR. Used in digital logic design.",
+  "flip flop": "Bistable element storing 1-bit. Types: SR, JK, D, T. Used in registers, counters and sequential circuits.",
+  "counter": "Sequential circuits that count pulses. Up/down, synchronous/asynchronous. Used in timers, frequency division and event counting.",
+  "register": "Group of flip-flops storing binary data used inside CPUs for temporary data, instructions, flags etc.",
 
+  "number systems": "Represent numbers in binary, octal, decimal and hexadecimal systems. Conversion techniques form basis of digital design.",
+  "boolean algebra": "Mathematical representation of logic using variables and operations (AND, OR, NOT). Simplification using laws and theorems improves circuit efficiency.",
+  "k map": "Karnaugh Map graphical method used to minimize Boolean expressions to reduce digital logic hardware.",
+  "adder": "Circuit adding binary digits. Half adder handles two bits without carry in; full adder includes carry. Used in ALU and processors.",
+
+  "microprocessor": "Programmable device that fetches, decodes and executes instructions. Contains ALU, registers, control unit but external memory and I/O required.",
+  "microcontroller": "Single-chip processor containing CPU, RAM, ROM, timers and peripherals designed for embedded system applications like automation, robotics, consumer electronics.",
+  "8051 microcontroller": "8-bit MCS-51 family MCU with Harvard architecture, on-chip timers, ports, serial interface and interrupts. Used in many embedded platforms.",
+  
+  "adc": "Analog to Digital Converter converts analog voltage into binary representation. Types: flash, SAR, dual slope.",
+  "dac": "Digital to Analog Converter converts binary input to analog output. Used in sound synthesis, control systems and instrumentation.",
+  
+  "control system": "A system that maintains desired output by automatically adjusting inputs. Types: open loop and closed loop. Stability analysis uses transfer functions and root locus.",
+  "feedback": "Process of feeding output portion back to input. Reduces errors, improves stability and bandwidth.",
+  "transfer function": "Laplace domain ratio of output to input assuming zero initial conditions. Used for system analysis, poles define stability.",
+  
+  "laplace transform": "Transforms differential time domain equations into algebraic s-domain representation simplifying system analysis.",
+  "fourier transform": "Transforms signal from time to frequency domain revealing spectrum content essential in communication and signal processing.",
+  "z transform": "Discrete-time counterpart of Laplace used for DSP system analysis, stability and filter design.",
+
+  "amplitude modulation": "Modulation technique where amplitude of carrier varies with message. Used in broadcast radio. Sensitive to noise.",
+  "frequency modulation": "Carrier frequency changes with message. Better noise immunity than AM. Used in FM radio and wireless communication.",
+  "phase modulation": "Modifies carrier phase using message. Basis for digital modulation methods like PSK.",
+  "digital modulation": "Uses discrete symbol levels such as ASK, PSK, QAM. Information carried in amplitude/phase combinations.",
+  
+  "multiplexing": "Combining multiple signals into single channel. TDM uses time slots; FDM uses different frequency bands.",
+  "communication system": "Contains transmitter, channel and receiver. Channel introduces attenuation, distortion and noise affecting received signal.",
+  "noise": "Any unwanted signal interfering with original. Measured by SNR. Types: thermal, interference, shot noise.",
+  
+  "antenna": "Device converting electrical signals into electromagnetic waves and vice versa. Characteristics include gain, directivity, radiation pattern, bandwidth.",
+  "radiation pattern": "Spatial distribution of radiated energy showing direction of maximum radiation. Used to design antennas for mobile and satellite links.",
+  "waveguide": "Hollow metallic structure guiding microwave signals with low loss used in radar and satellite communication.",
+  "radar": "Radio Detection and Ranging uses microwave signals to detect distance, direction and velocity using Doppler principle.",
+
+  "dsp": "Digital Signal Processing involves sampling, quantization, filtering, DFT/FFT, spectral analysis and real-time implementation using DSP processors.",
+  "convolution": "Fundamental DSP operation combining signals to produce output representing weighted sum. Used for filtering and system analysis.",
+  "fft": "Fast Fourier Transform computes DFT efficiently enabling real-time spectrum computation used in OFDM and modulation.",
+  
+  "sampling": "Converts continuous signal to discrete time by taking samples. Nyquist theorem says Fs ≥2×fmax.",
+  "quantization": "Approximating amplitudes to discrete levels causing quantization noise. Step size Δ controls distortion.",
+  "dpcm": "Differential Pulse Code Modulation encodes difference between samples reducing bit rate.",
+  
+  "microstrip patch antenna": "Low profile antenna printed on dielectric substrate, offers directional radiation, easy fabrication, widely used in WLAN, Bluetooth, mobile communication.",
+  "smith chart": "Graphical tool for solving transmission line impedance matching problems using reflection coefficient diagrams.",
+  
+  "vlsi": "Very Large Scale Integration involves designing millions of MOSFETs in a single chip. Comprises CMOS technology, layout, fabrication, timing, verification.",
+  "cmos inverter": "Basic CMOS logic building block using PMOS and NMOS providing high noise margin and low static power.",
+  
+  "power electronics": "Deals with conversion and control of electrical power using semiconductor devices such as SCR, MOSFET, IGBT. Applications include drives, UPS, SMPS.",
+  "smps": "Switched Mode Power Supply uses switching regulators for efficient power conversion at high frequency offering smaller size and better efficiency."
 }
