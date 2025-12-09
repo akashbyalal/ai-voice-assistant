@@ -1,5 +1,4 @@
-ONLINE_STT = "GOOGLE"
-OFFLINE_STT = "VOSK"
+# No more online/offline STT toggle nonsense
+STT_ENGINE = "WHISPER"
 
 OFFLINE_KB_PATH = "data/ece_kb.json"
-VOSK_MODEL_PATH = "models/vosk-model"
