@@ -1,9 +1,13 @@
 from flask import Flask, request, jsonify
 from assistant.pipeline import AssistantPipeline
 from assistant.tts import speak
+import asyncio
 
 app = Flask(__name__)
 pipeline = AssistantPipeline()
+
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
 
 
 @app.route("/")
@@ -31,7 +35,7 @@ body{
     border-radius:12px;
     box-shadow:0 0 20px rgba(0,0,0,0.5);
 }
-input{
+input, select{
     width:100%;
     padding:10px;
     border:none;
@@ -70,7 +74,13 @@ button:hover{
 <div class="container">
     <h2>ZIRA Assistant</h2>
 
+    <select id="mode">
+        <option value="online">Online Model</option>
+        <option value="offline">Offline Model</option>
+    </select>
+
     <input id="msg" placeholder="Ask a question...">
+
     <button onclick="sendText()">Ask</button>
     <button onclick="recordVoice()">🎤 Speak</button>
 
@@ -81,11 +91,14 @@ button:hover{
 <script>
 async function sendText(){
     const txt = document.getElementById("msg").value;
+    const mode = document.getElementById("mode").value;
+
     const res = await fetch('/query', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({text:txt})
+        body:JSON.stringify({text:txt, mode:mode})
     });
+
     const data = await res.json();
     document.getElementById("response").innerText = data.response;
 }
@@ -96,6 +109,7 @@ let mediaRecorder;
 let audioChunks = [];
 
 async function recordVoice(){
+    const mode = document.getElementById("mode").value;
     const stream = await navigator.mediaDevices.getUserMedia({audio:true});
     mediaRecorder = new MediaRecorder(stream);
 
@@ -109,7 +123,10 @@ async function recordVoice(){
 
         const res = await fetch('/voice', {
             method:'POST',
-            headers:{'Content-Type':'audio/wav'},
+            headers:{
+                'Content-Type':'audio/wav',
+                'X-Mode': mode
+            },
             body: buffer
         });
 
@@ -127,25 +144,37 @@ async function recordVoice(){
 """
 
 
-
-
 @app.route("/query", methods=["POST"])
 def query():
     data = request.get_json()
     text = data.get("text", "")
-    out = pipeline.process_text(text)
-    speak(out)
-    return jsonify({"response": out})
+    mode = data.get("mode", "online")  # default online
+
+    async def run():
+        user_text, ans_future = pipeline.process_text(text, mode)
+        answer = await ans_future
+        return answer
+
+    answer = loop.run_until_complete(run())
+    speak(answer)
+
+    return jsonify({"response": answer})
+
 
 @app.route("/voice", methods=["POST"])
 def voice():
-    # audio bytes from browser
+    mode = request.headers.get("X-Mode", "online")
     audio_bytes = request.data  
 
-    out = pipeline.process_audio(audio_bytes)
-    speak(out)
+    async def run():
+        user_text, ans_future = pipeline.process_audio(audio_bytes, mode)
+        answer = await ans_future
+        return answer
 
-    return jsonify({"response": out})
+    answer = loop.run_until_complete(run())
+    speak(answer)
+
+    return jsonify({"response": answer})
 
 
 if __name__ == "__main__":
